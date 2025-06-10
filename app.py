@@ -55,6 +55,7 @@ def download_resume():
             download_name='Sameeksha_Shrivastava_Resume.pdf'
         )
     except Exception as e:
+        logger.error(f"Error downloading resume: {str(e)}")
         return jsonify({'error': str(e)}), 404
 
 @app.route('/send-email', methods=['POST'])
@@ -155,7 +156,8 @@ def send_email():
 
 # For local development
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 # For Vercel deployment
 app = app 
