@@ -46,16 +46,15 @@ def serve_js(filename):
 def serve_images(filename):
     return send_from_directory('images', filename)
 
-@app.route('/download-resume')
-def download_resume():
+@app.route('/view-resume')
+def view_resume():
     try:
         return send_file(
             'assets/resume.pdf',
-            as_attachment=True,
-            download_name='Sameeksha_Shrivastava_Resume.pdf'
+            as_attachment=False
         )
     except Exception as e:
-        logger.error(f"Error downloading resume: {str(e)}")
+        logger.error(f"Error viewing resume: {str(e)}")
         return jsonify({'error': str(e)}), 404
 
 @app.route('/send-email', methods=['POST'])
