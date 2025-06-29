@@ -66,10 +66,7 @@ http://localhost:5000
 portfolio/
 ├── app.py              # Main Flask application
 ├── test_email.py       # Email testing script
-├── assets/            # Static assets like resume
-├── css/              # Stylesheets
-├── js/               # JavaScript files
-├── images/           # Image assets
+├── static/            # All static assets (css, js, images, assets)
 └── pages/            # HTML templates
 ```
 

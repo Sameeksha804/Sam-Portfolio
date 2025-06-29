@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = Flask(__name__, 
-    static_folder='.',  # Serve files from the root directory
+    static_folder='static',  # Serve files from the static directory
     template_folder='pages'
 )
 
@@ -34,23 +34,11 @@ mail = Mail(app)
 def home():
     return render_template('home.html')
 
-@app.route('/css/<path:filename>')
-def serve_css(filename):
-    return send_from_directory('css', filename)
-
-@app.route('/js/<path:filename>')
-def serve_js(filename):
-    return send_from_directory('js', filename)
-
-@app.route('/images/<path:filename>')
-def serve_images(filename):
-    return send_from_directory('images', filename)
-
 @app.route('/view-resume')
 def view_resume():
     try:
         return send_file(
-            'assets/resume.pdf',
+            'static/assets/resume.pdf',
             as_attachment=False
         )
     except Exception as e:
